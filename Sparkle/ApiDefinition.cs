@@ -241,27 +241,27 @@ namespace Sparkle
     partial interface Notifications
     {
         // extern NSString *const SUUpdaterDidFinishLoadingAppCastNotification;
-        [Field ("SUUpdaterDidFinishLoadingAppCastNotification")]
+        [Field ("SUUpdaterDidFinishLoadingAppCastNotification", LibraryName = "__Internal")]
         NSString SUUpdaterDidFinishLoadingAppCastNotification { get; }
 
         // extern NSString *const SUUpdaterDidFindValidUpdateNotification;
-        [Field ("SUUpdaterDidFindValidUpdateNotification")]
+        [Field ("SUUpdaterDidFindValidUpdateNotification", LibraryName = "__Internal")]
         NSString SUUpdaterDidFindValidUpdateNotification { get; }
 
         // extern NSString *const SUUpdaterDidNotFindUpdateNotification;
-        [Field ("SUUpdaterDidNotFindUpdateNotification")]
+        [Field ("SUUpdaterDidNotFindUpdateNotification", LibraryName = "__Internal")]
         NSString SUUpdaterDidNotFindUpdateNotification { get; }
 
         // extern NSString *const SUUpdaterWillRestartNotification;
-        [Field ("SUUpdaterWillRestartNotification")]
+        [Field ("SUUpdaterWillRestartNotification", LibraryName = "__Internal")]
         NSString SUUpdaterWillRestartNotification { get; }
 
         // extern NSString *const SUUpdaterAppcastItemNotificationKey;
-        [Field ("SUUpdaterAppcastItemNotificationKey")]
+        [Field ("SUUpdaterAppcastItemNotificationKey", LibraryName = "__Internal")]
         NSString SUUpdaterAppcastItemNotificationKey { get; }
 
         // extern NSString *const SUUpdaterAppcastNotificationKey;
-        [Field ("SUUpdaterAppcastNotificationKey")]
+        [Field ("SUUpdaterAppcastNotificationKey", LibraryName = "__Internal")]
         NSString SUUpdaterAppcastNotificationKey { get; }
     }
 
@@ -369,7 +369,7 @@ namespace Sparkle
     partial interface Constants
     {
         // extern NSString *const SUSparkleErrorDomain;
-        [Field ("SUSparkleErrorDomain")]
+        [Field ("SUSparkleErrorDomain", LibraryName = "__Internal")]
         NSString SUSparkleErrorDomain { get; }
 
     }
