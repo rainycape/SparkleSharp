@@ -4,12 +4,11 @@ C# bindings for Sparkle
 
 ## Installation instructions
 
-- Install Xamarin Studio 6.1 or greater.
+- Install Visual Studio for macOS.
 - Clone this repository (preferrably as a submodule in your main project)
 
   ```sh
   git submodule add https://github.com/rainycape/SparkleSharp.git
-  git submodule update --init --recursive # Required since SparkleSharp includes Sparkle as a submodule
   ```
 - From your Xamarin.Mac project, right click on the solution and select *Add* -> *Add Existing Project* and select **Sparkle.csproj**
 - Right click on your Xamarin.Mac project's References and select *Edit References*
