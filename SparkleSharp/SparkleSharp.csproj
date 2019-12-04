@@ -9,7 +9,6 @@
     <RootNamespace>Sparkle</RootNamespace>
     <AssemblyName>Sparkle</AssemblyName>
     <MacResourcePrefix>Resources</MacResourcePrefix>
-    <ReleaseVersion>3.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Fixes.cs" />
+    <Compile Include="AppcastBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />

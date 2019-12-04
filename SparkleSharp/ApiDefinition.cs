@@ -2,12 +2,12 @@ using System;
 using Foundation;
 using ObjCRuntime;
 
-namespace Sparkle
+namespace SparkleSharp
 {
 
     // @interface SUAppcast : NSObject <NSURLDownloadDelegate>
     [BaseType (typeof (NSObject))]
-    interface SUAppcast
+    public interface SUAppcast
     {
         // @property (copy) NSString * userAgentString;
         [Export ("userAgentString")]
@@ -28,38 +28,41 @@ namespace Sparkle
         // @property (readonly, copy) NSArray * items;
         [Export ("items", ArgumentSemantic.Copy)]
         NSObject [] Items { get; }
+
+        // -(instancetype)initWithArray:(NSArray *)array;
+        [Export("initWithArray:")]
+        IntPtr Constructor(NSArray array);
     }
 
     // @interface SUAppcastItem : NSObject
     [BaseType (typeof (NSObject))]
-    interface SUAppcastItem
+    public interface SUAppcastItem
     {
         // @property (readonly, copy) NSString * title;
-        [Export ("title")]
+        [Export ("title", ArgumentSemantic.Copy)]
         string Title { get; }
 
-        // @property (readonly, copy) NSDate * date;
-        [Export ("date", ArgumentSemantic.Copy)]
-        NSDate Date { get; }
+        // @property (copy, readonly) NSString *dateString;
+        [Export ("dateString", ArgumentSemantic.Copy)]
+        NSString DateString { get; }
 
         // @property (readonly, copy) NSString * itemDescription;
-        [Export ("itemDescription")]
+        [Export ("itemDescription", ArgumentSemantic.Copy)]
         string ItemDescription { get; }
 
         // @property (readonly, strong) NSURL * releaseNotesURL;
         [Export ("releaseNotesURL", ArgumentSemantic.Strong)]
         NSUrl ReleaseNotesURL { get; }
 
-        // @property (readonly, copy) NSString * DSASignature;
-        [Export ("DSASignature")]
-        string DSASignature { get; }
+        // @property (strong, readonly) SUSignatures *signatures;
+        // Signatures cannot be mapped, because SUSignatures interface is not exported in Sparkle
 
         // @property (readonly, copy) NSString * minimumSystemVersion;
-        [Export ("minimumSystemVersion")]
+        [Export ("minimumSystemVersion", ArgumentSemantic.Copy)]
         string MinimumSystemVersion { get; }
 
         // @property (readonly, copy) NSString * maximumSystemVersion;
-        [Export ("maximumSystemVersion")]
+        [Export ("maximumSystemVersion", ArgumentSemantic.Copy)]
         string MaximumSystemVersion { get; }
 
         // @property (readonly, strong) NSURL * fileURL;
@@ -67,11 +70,15 @@ namespace Sparkle
         NSUrl FileURL { get; }
 
         // @property (readonly, copy) NSString * versionString;
-        [Export ("versionString")]
+        [Export ("versionString", ArgumentSemantic.Copy)]
         string VersionString { get; }
 
+        // @property (copy, readonly) NSString *osString;
+        [Export( "osString", ArgumentSemantic.Copy)]
+        string OSString { get; }
+
         // @property (readonly, copy) NSString * displayVersionString;
-        [Export ("displayVersionString")]
+        [Export ("displayVersionString", ArgumentSemantic.Copy)]
         string DisplayVersionString { get; }
 
         // @property (readonly, copy) NSDictionary * deltaUpdates;
@@ -98,6 +105,10 @@ namespace Sparkle
         [Export ("criticalUpdate")]
         bool CriticalUpdate { [Bind ("isCriticalUpdate")] get; }
 
+        // @property (getter=isMacOsUpdate, readonly) BOOL macOsUpdate
+        [Export ("macOsUpdate")]
+        bool MacOSUpdate { [Bind("isMacOsUpdate")] get; }
+
         // @property (readonly, getter = isInformationOnlyUpdate) BOOL informationOnlyUpdate;
         [Export ("informationOnlyUpdate")]
         bool InformationOnlyUpdate { [Bind ("isInformationOnlyUpdate")] get; }
@@ -110,7 +121,7 @@ namespace Sparkle
     // @protocol SUVersionComparison
     [Protocol, Model]
     [BaseType (typeof (NSObject))]
-    interface SUVersionComparison
+    public interface SUVersionComparison
     {
         // @required -(NSComparisonResult)compareVersion:(NSString *)versionA toVersion:(NSString *)versionB;
         [Abstract]
@@ -120,7 +131,7 @@ namespace Sparkle
 
     // @interface SUStandardVersionComparator : NSObject <SUVersionComparison>
     [BaseType (typeof (NSObject))]
-    interface SUStandardVersionComparator
+    public interface SUStandardVersionComparator
     {
         // +(SUStandardVersionComparator *)defaultComparator;
         [Static]
@@ -135,7 +146,7 @@ namespace Sparkle
     // @protocol SUVersionDisplay
     [Protocol, Model]
     [BaseType (typeof (NSObject))]
-    interface SUVersionDisplay
+    public interface SUVersionDisplay
     {
         // @required -(void)formatVersion:(NSString **)inOutVersionA andVersion:(NSString **)inOutVersionB;
         [Abstract]
@@ -145,7 +156,7 @@ namespace Sparkle
 
     // @interface SUUpdater : NSObject
     [BaseType (typeof (NSObject))]
-    interface SUUpdater
+    public interface SUUpdater
     {
         [Wrap ("WeakDelegate")]
         SUUpdaterDelegate Delegate { get; set; }
@@ -212,6 +223,9 @@ namespace Sparkle
         [Export ("checkForUpdates:")]
         void CheckForUpdates (NSObject sender);
 
+        [Export ("checkForUpdatesFromAppcast:")]
+        void CheckForUpdates (SUAppcast appcast);
+
         // -(void)checkForUpdatesInBackground;
         [Export ("checkForUpdatesInBackground")]
         void CheckForUpdatesInBackground ();
@@ -238,7 +252,7 @@ namespace Sparkle
     }
 
     [Static]
-    partial interface Notifications
+    public partial interface Notifications
     {
         // extern NSString *const SUUpdaterDidFinishLoadingAppCastNotification;
         [Field ("SUUpdaterDidFinishLoadingAppCastNotification", LibraryName = "__Internal")]
@@ -269,7 +283,7 @@ namespace Sparkle
     // @protocol SUUpdaterDelegate <NSObject>
     [Protocol, Model]
     [BaseType (typeof (NSObject))]
-    interface SUUpdaterDelegate
+    public interface SUUpdaterDelegate
     {
         // @optional -(BOOL)updaterMayCheckForUpdates:(SUUpdater *)updater;
         [Export ("updaterMayCheckForUpdates:")]
@@ -366,7 +380,7 @@ namespace Sparkle
 
 
     [Static]
-    partial interface Constants
+    public partial interface Constants
     {
         // extern NSString *const SUSparkleErrorDomain;
         [Field ("SUSparkleErrorDomain", LibraryName = "__Internal")]

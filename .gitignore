@@ -38,3 +38,9 @@ Thumbs.db
 
 #dotCover
 *.dotCover
+
+# Visual Studio settings
+.vs/
+
+# Visual Studio Code settings
+.vscode/

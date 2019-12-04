@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sparkle", "Sparkle\Sparkle.csproj", "{5B22F6E9-3675-42B5-9CAA-090BA39A5407}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkleSharp", "SparkleSharp\SparkleSharp.csproj", "{5B22F6E9-3675-42B5-9CAA-090BA39A5407}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
