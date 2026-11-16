@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> Archived November 16, 2026. Contact [Oscium Support](https://support.oscium.com) for details.
+
 # SparkleSharp
 
 C# bindings for Sparkle. 
